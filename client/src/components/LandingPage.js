@@ -1,14 +1,17 @@
-import React, { useState } from 'react';
-import {  useNavigate } from 'react-router-dom';  
+import React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';  
 import { Container, Form, Button } from 'react-bootstrap';
 import { TextField } from '@mui/material';
+import { setUserName } from '../redux/actions/userNameActions';
 
 const LandingPage = () => {
-  const [userName, setUserName] = useState('');
+  const dispatch = useDispatch();
+  const userName = useSelector((state) => state.userName.Name); 
   const navigate = useNavigate();  
 
   const handleNameChange = (e) => {
-    setUserName(e.target.value);
+    dispatch(setUserName(e.target.value));
   };
 
   const handleButtonClick = () => {
